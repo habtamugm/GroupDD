@@ -1,0 +1,155 @@
+#%RAML 1.0
+title: craft-online-shopping
+description: rest API documentation
+baseUri: www.craft-onine-shopping.com 
+version: 1.0
+uses:
+  lib: library.raml
+/products:
+  get:
+    queryParameters:
+      productId: 
+       type: integer
+       description: the id of the product
+       required: false
+       example: 1234
+         
+      name:
+        type: string
+        description: the name of the product
+        maxLength: 15
+        minLength: 1
+        example: abcd
+        required: false
+    headers:
+       session:
+        description: conection session is stored
+        type: string
+        required: false  
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.product[]
+            example:
+              !include example/products.raml
+  type:
+    lib.resource:
+      exampleRefrence1:           
+  is:
+     lib.404-500responce      
+         
+  /{productId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.product
+              example:
+                !include example/product.raml
+    type:
+      lib.resource:
+        exampleRefrence1:
+    is:
+       lib.404-500responce                    
+/users:
+  post:
+    body:
+      application/json:
+        type: lib.user[]
+        example:
+          !include example/userspost.raml  
+  
+  type:
+    lib.resource:
+      exampleRefrence1:
+        {
+          uid: 7887
+        }
+  /{userId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.user
+              example:
+                !include example/useriddget.raml
+            
+    is:
+      lib.404-500responce
+
+/orders:
+  get:
+    queryParameters:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.order[]
+            example:
+              !include example/ordersget.raml 
+  is:
+    lib.404-500responce 
+             
+  post:
+    body:
+      application/json:
+        type: lib.order[]
+        example:
+          !include example/orderspost.raml
+          
+  type:
+    lib.resource:
+      exampleRefrence1: 
+        {
+          "message": "user created order"
+        }      
+  /{orderId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.order
+              example:
+                !include example/orderidget.raml
+    is:
+      lib.404-500responce
+/catagories:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.catagory[]
+            example:
+              !include example/catagoriesget.raml
+  type:
+    lib.resource1:
+      exampleRefrence:         
+  is:
+    lib.404-500responce   
+  /{catagoryId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.catagory
+              example:
+                !include example/catagoryId.raml
+    type:
+      lib.resource1:
+        exampleRefrence:
+
+    is:
+       lib.404-500responce  
+          
+
+
+          
+    
+    
+  

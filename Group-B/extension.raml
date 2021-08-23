@@ -1,0 +1,334 @@
+#%RAML 1.0 Extension
+extends: craft-online-shopping.raml
+uses:
+  lib_extenstion: library.raml
+/products:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib_extenstion.product[]
+            example:
+             !include example/products.raml
+
+  type:
+    lib_extenstion.resource1:
+      exampleRefrence:
+        
+  is:
+     lib.404-500responce      
+                  
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib_extenstion.product[]
+            example:
+             !include example/products.raml
+              
+  put:
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib_extenstion.product[]
+            example:
+                !include example/products.raml
+                        
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+                [{msg: "products deleted successfully"}]
+                         
+  /{productId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib_extenstion.product
+              example:
+                !include example/product.raml
+    type:
+      lib.resource:
+        exampleRefrence1:
+    is:
+       lib.404-500responce                    
+                   
+    post:
+       responses:
+        201:
+          body:
+            application/json:
+              type: lib_extenstion.product
+              example:
+                !include example/product.raml
+          
+    put:
+       responses:
+        201:
+          body:
+            application/json:
+              type: lib_extenstion.product
+              example:
+                !include example/product.raml
+                        
+    delete:
+       responses:
+        200:
+          body:
+            application/json:
+              example:
+                 [{msg: "product deleted successfully"}]
+/users:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib_extenstion.user[]
+            example: 
+              !include example/usersget.raml
+  type:
+    lib_extenstion.resource1:
+      exampleReference:
+          
+  is:
+     lib.404-500responce      
+                  
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib_extenstion.user[]
+            example:
+              !include example/userspost.raml
+  put:
+    responses:
+      202:
+        body:
+          application/json:
+            type: lib_extenstion.user[]
+            example:
+              !include example/userspost.raml
+                        
+           
+  delete:
+    responses:
+      200:
+        body: 
+          application/json:
+            example:
+              [{msg: "users deleted successfully"}]
+  /{user}:
+    get:
+       responses:
+        200:
+          body:
+            application/json:
+              type: lib_extenstion.user
+              example:
+                !include example/useriddget.raml
+    type:
+      lib.resource:
+        exampleRefrence1:
+    is:
+       lib.404-500responce                    
+            
+    post:
+       responses:
+        201:
+          body:
+            application/json:
+              type: lib_extenstion.user
+              example:
+                {
+                  userName: "jhon",
+                  email: "jhon123@gmail.com"
+                }
+    put:
+       responses:
+        200:
+          body:
+            application/json:
+              type: lib_extenstion.user
+              example:
+                {
+                  userName: "jhon",
+                  email: "jhon123@gmail.com"
+                }
+    delete:
+       responses:
+        200:
+          body:
+            application/json:
+              example:
+                {msg: "user deleted successfully"}
+/categories:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib_extenstion.catagory[]
+            example:
+              !include example/catagoriesget.raml
+  type:
+    lib.resource:
+      exampleRefrence1:           
+  is:
+     lib.404-500responce      
+                          
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib_extenstion.catagory[]
+            example:
+              !include example/catagoriesget.raml
+  put:
+    responses:
+      202:
+        body:
+          application/json:
+            type: lib_extenstion.catagory[]
+            example:
+              !include example/catagoriesget.raml
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+                 [{msg: "categories deleted successfully"}]
+       
+  /{category}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib_extenstion.catagory
+              example:
+                !include example/catagoryId.raml
+    type:
+      lib.resource:
+        exampleRefrence1:
+    is:
+       lib.404-500responce                    
+
+    post:
+      responses:
+        201:
+          body:
+            application/json:
+              type: lib_extenstion.catagory
+              example:
+                !include example/catagoryId.raml
+    put:
+      responses:
+        202:
+          body:
+            application/json:
+              type: lib_extenstion.catagory
+              example:
+                !include example/orderidget.raml
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                [{msg: "category deleted successfully"}]
+
+/orders:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib_extenstion.order[]
+            example:
+              !include example/ordersget.raml
+  type:
+    lib.resource:
+      exampleRefrence1:           
+  is:
+     lib.404-500responce      
+                          
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib_extenstion.order[]
+            example:
+              !include example/orderspost.raml
+  put:
+    responses:
+      201:
+        body:
+          application/json:
+            type: lib_extenstion.order[]
+            example:
+              !include example/orderspost.raml
+  delete:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [{msg: "orders deleted successfully"}]
+  /{order}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib_extenstion.order
+              example:
+                !include example/orderidget.raml
+    type:
+       lib.resource:
+        exampleRefrence1:
+    is:
+       lib.404-500responce                    
+            
+    post:
+      responses:
+        201:
+          body:
+            application/json:
+              type: lib_extenstion.order
+              example:
+                !include example/orderidget.raml
+    put:
+      responses:
+        201:
+          body:
+            application/json:
+              type: lib_extenstion.order
+              example:
+                !include example/orderidget.raml
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                [{msg: "order deleted successfully"}]
+      
+      
+
+
+
+    
+    
+    
