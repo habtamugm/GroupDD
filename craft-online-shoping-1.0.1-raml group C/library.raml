@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+usage: collection of all API fragments
+types:
+ productDatatype: !include datatype/product.raml
+ userDatatype: !include datatype/userdataType.raml
+ orderDaratype: !include datatype/orderdataType.raml
+ catagoriesDatatype: !include datatype/catagoriesdataType.raml
+securitySchemes:
+  basic: !include security/basicAuth.raml
+traits:
+  respons: !include traits/respones.raml
+resourceTypes:
+  resource: !include resources/postresourceType.raml
+  

@@ -1,0 +1,126 @@
+#%RAML 1.0
+title: craft online shoping
+uses:
+  lib: library.raml
+ 
+/product:
+  get:
+    queryParameters:
+      product_id:
+        type: integer 
+        description:  the id of the productq
+        required: true
+        example: 8087  
+      name:
+        type: string
+        description: the name of the product
+        maxLength: 10
+        minLength: 2
+        example: dell
+        required: true
+
+    headers:
+      conection-type:
+      session:
+        description: connection session is stored
+        type: string
+        required: false
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.productDatatype[]
+            example: !include examples/products.raml
+    is:
+      - lib.respons
+        
+  /{product_id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.productDatatype
+              example: !include examples/product.raml
+               
+      is:
+        - lib.respons
+        
+  
+/user:
+  post:   
+    body:
+      application/json:
+        type:  lib.userDatatype   
+        example: !include examples/user.raml
+             
+  type:
+    lib.resource:
+      exampleReferance1:
+        {
+          use_id: 12345 
+        }        
+/order:
+  post:
+    body:
+      application/json:
+        example: !include examples/order.raml    
+  type:
+    lib.resource:
+      exampleReferance1:
+        {
+         msg: users placed ordered
+        }    
+/catagories:
+
+  get:
+    queryParameters:
+      catagory_Id:
+        type: integer
+        description: this is the catagories Id
+        required: true
+        example: 8087
+      catagoriesName:
+        type: string
+        description: this is name of the catagories
+        maxLength: 10
+        minLength: 3
+        example: computer
+    headers:
+      conection-type:
+      session:
+        description: connection session is stored
+        type: string
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.catagoriesDatatype[]
+            example: !include examples/catagories.raml
+             
+    is:
+      - lib.respons
+       
+  /catagory:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.catagoriesDatatype[]
+              example: !include examples/catagories.raml
+                
+      is:
+        - lib.respons
+         
+                
+ 
+              
+
+        
+        
+          
+          
+  
